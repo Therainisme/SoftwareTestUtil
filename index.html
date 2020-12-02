@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftwareTestUtil</title>
+
+    <link rel="stylesheet" href="http://therainisme.com:1225/KoalaToolbox/clear.css">
+    <link rel="stylesheet" href="./css/AmeUI.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/WellJulyUI.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="AmeUI-search box">
+            <img class="AmeUI-search-icon" src="./img/search.jpg" alt="icon">
+            <textarea id="input" class="AmeUI-input" type="text" name="search" placeholder="搜索正交表内容 例如输入：2^3"
+                maxlength="36"></textarea>
+            <img class="AmeUI-search-icon AmeUI-search-icon2" src="./img/search2.jpg" alt="icon"
+                onclick="InterfaceUtil.clickMicrophone()">
+        </div>
+
+        <div id="search-res" class="search-res">
+            <!-- 0 0 0<br>
+            0 1 1<br>
+            1 0 1<br>
+            1 1 0 -->
+
+            <!-- <span>2^3</span><br>
+            <textarea id="search-res-input" class="search-res-input" type="text" placeholder="数据输入处，中间用空格隔开"></textarea>
+
+            <div id="button" class="box" onclick="clickBtn()">
+                生 成
+            </div> -->
+        </div>
+        <!-- <div class="search-res">
+            <textarea id="search-res-input" class="search-res-input" type="text" placeholder="数据输入处，中间用空格隔开"></textarea>
+        </div> -->
+    
+
+    </div>
+</body>
+
+</html>
+
+<script src="./js/DataStructure.js" charset="utf-8"></script>
+<script src="./js/InterfaceUtil.js" charset="utf-8"></script>
+<script src="./js/TableUtil.js" charset="utf-8"></script>
+<script src="./js/main.js" charset="utf-8"></script>
