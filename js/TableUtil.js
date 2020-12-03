@@ -42,11 +42,35 @@ class TableUtil {
                 }
                 // 修改用户界面内容
                 InterfaceUtil.setWaitingInput(target)
-                InterfaceUtil.modifedUIAfterSearch(searchResList)    
+                InterfaceUtil.modifedUIAfterSearch(searchResList)
                 return;
             }
         }
-        WellJulyUI.addMsg('没有找到相应的内容，请重新输入')
+        WellJulyUI.addMsg('没有找到相应的内容，请重新输入。或者点击这条消息获取帮助')
+    }
+
+    // 根据正交表和输入生成测试用例
+    static generateTestCases(table, data, format) {
+        console.log(format)
+        // 结果集
+        const res = []
+        // 添加表头
+        const headList = []
+        headList.push('序号')
+        for (let head = 0; head < data.length; ++head) {
+            headList.push(data[head][0])
+        }
+        res.push(headList)
+        // 根据正交表生成测试用例
+        for (let row = 0; row < table.length; ++row) {
+            const line = []
+            line.push(~~row + 1)
+            for (let col = 0; col < table[row].length - 1; ++col) {
+                line.push(data[col][~~table[row][col] + 1])
+            }
+            res.push(line)
+        }
+        return res
     }
 
     getTable() {

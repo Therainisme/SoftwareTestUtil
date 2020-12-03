@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/AmeUI.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/WellJulyUI.js" charset="utf-8"></script>
+    <script src="./js/xlsx.full.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -28,17 +29,10 @@
             1 0 1<br>
             1 1 0 -->
 
-            <!-- <span>2^3</span><br>
-            <textarea id="search-res-input" class="search-res-input" type="text" placeholder="数据输入处，中间用空格隔开"></textarea>
-
-            <div id="button" class="box" onclick="clickBtn()">
-                生 成
-            </div> -->
+            <!-- <span>2^3</span><br>-->
         </div>
-        <!-- <div class="search-res">
-            <textarea id="search-res-input" class="search-res-input" type="text" placeholder="数据输入处，中间用空格隔开"></textarea>
-        </div> -->
-    
+        <input type="file" id="uploadFile" onchange="InterfaceUtil.handleUpload(this)" style="display:none">
+
 
     </div>
 </body>
@@ -48,4 +42,5 @@
 <script src="./js/DataStructure.js" charset="utf-8"></script>
 <script src="./js/InterfaceUtil.js" charset="utf-8"></script>
 <script src="./js/TableUtil.js" charset="utf-8"></script>
+<script src="./js/ExeclUtil.js" charset="utf-8"></script>
 <script src="./js/main.js" charset="utf-8"></script>

@@ -1,12 +1,13 @@
 class InterfaceUtil {
-    // 0 -> 默认
-    // 1 -> 浏览目标正交表
-    static #status = 0;
     static #waitingInput; // 正在等待输入的数据约束
+    static #table = null; // 搜索到的正交表
 
     // 用户搜索信息之后修改界面
     static modifedUIAfterSearch(searchResList) {
+        this.#table = searchResList
         const searchRes = document.getElementById('search-res')
+        // 第一次的searchRes是隐藏的
+        searchRes.style.opacity = "1"
         // 添加搜索结果
         searchRes.innerText = ""
         for (let i = 0; i < searchResList.length; ++i) {
@@ -28,33 +29,39 @@ class InterfaceUtil {
         const brAfterSpan = document.createElement('br')
         searchRes.prepend(brAfterSpan)
         searchRes.prepend(hintSpan)
-        //添加按钮
-        const button = document.createElement('div');
-        button.id = 'button'
-        button.className = 'box'
-        button.onclick = this.clickFuntionBtn
-        button.innerHTML = "上传"
-        searchRes.appendChild(button)
-        // 修改用户状态
-        InterfaceUtil.setStatus(1);
+        searchRes.onclick = this.clickFuntionBtn
+        // 添加空隙
+
+        const container = document.getElementById('container')
+        container.style.height = ~~searchRes.offsetHeight + 500 + 'px'
     }
 
-    // 用户点击按钮
+    // 用户点击按钮上传文件
     static clickFuntionBtn() {
-        
+        document.getElementById("uploadFile").click();
+    }
+
+    // 处理上传动作
+    static handleUpload(obj) {
+        console.log(obj.files[0])
+        ExcelUtil.parse(obj.files[0])
+        setTimeout(() => {
+            const data = ExcelUtil.getUploadFileObject(InterfaceUtil.getWaitingInput())
+            const res = TableUtil.generateTestCases(this.#table, data, InterfaceUtil.getWaitingInput())
+            ExcelUtil.downloadData(res, obj.files[0].name.substring(0, obj.files[0].name.length - 5) + '_TestCases.xlsx')
+        }, 2000)
+    }
+
+
+    
+    // 点击消息时候出发的事件
+    static clickMsgBur() {
+        //TODO 跳转文档
     }
 
     // 用户点击麦克风
     static clickMicrophone() {
         WellJulyUI.addMsg('非常不好意思这个东西是一个装饰')
-    }
-
-    static getStatus() {
-        return this.#status;
-    }
-
-    static setStatus(self) {
-        this.#status = self
     }
 
     static getWaitingInput() {
@@ -65,5 +72,3 @@ class InterfaceUtil {
         this.#waitingInput = self
     }
 }
-
-

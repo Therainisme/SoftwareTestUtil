@@ -29,6 +29,7 @@ class WellJulyUI{
                 }, 1000)
             }, 5000)
         }, 50)
+        box.onclick = InterfaceUtil.clickMsgBur
     }
 }
 
