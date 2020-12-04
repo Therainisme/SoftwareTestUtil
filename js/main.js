@@ -8,7 +8,6 @@ input.addEventListener("keyup", function (event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         const inputStr = input.value.substring(0, input.value.length - 1)
-        WellJulyUI.addMsg('你输入了：' + inputStr)
         // 截取-1的长度是为了过滤最后换行符
         tableUtil.search(inputStr)
         input.value = ""
@@ -23,6 +22,4 @@ input.onblur = ()=>{
     search.style.boxShadow = '0px 0px 50px 20px rgb(181,181,181)'
 }
 
-setTimeout(() => {
-    
-}, 3000)
+document.getElementsByClassName('AmeUI-search-icon')[0].onclick = InterfaceUtil.clickMsgBur

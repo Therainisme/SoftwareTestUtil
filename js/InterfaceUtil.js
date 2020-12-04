@@ -43,10 +43,10 @@ class InterfaceUtil {
 
     // 处理上传动作
     static handleUpload(obj) {
-        console.log(obj.files[0])
         ExcelUtil.parse(obj.files[0])
         setTimeout(() => {
             const data = ExcelUtil.getUploadFileObject(InterfaceUtil.getWaitingInput())
+            if (data === null) return;
             const res = TableUtil.generateTestCases(this.#table, data, InterfaceUtil.getWaitingInput())
             ExcelUtil.downloadData(res, obj.files[0].name.substring(0, obj.files[0].name.length - 5) + '_TestCases.xlsx')
         }, 2000)
@@ -56,7 +56,7 @@ class InterfaceUtil {
     
     // 点击消息时候出发的事件
     static clickMsgBur() {
-        //TODO 跳转文档
+        window.open('./static/帮助文档.html')
     }
 
     // 用户点击麦克风
@@ -70,5 +70,9 @@ class InterfaceUtil {
 
     static setWaitingInput(self) {
         this.#waitingInput = self
+    }
+
+    static getTable(){
+        return this.#table
     }
 }

@@ -19,18 +19,53 @@ class ExcelUtil {
         const rowAndcol = data['!ref']
         const row = this.letterToNumber(rowAndcol.split(':')[1])
         const col = rowAndcol.split(':')[1].replace(/[a-zA-Z]/g, '')
+        // 开始纠错
+        // 是否缺少
+        const edge = TableUtil.getTableEdge();
+        for (let factor = 1; factor <= row; ++factor) {
+            for (let status = 1; status <= edge[factor - 1]; ++status) {
+                const the = data[this.numberToletter(~~status + 1) + '' + (factor)];
+                if (the === undefined) {
+                    WellJulyUI.addMsg('发生错误！ 错误原因：第' + factor + '个因素填写错误。\n点击这条消息以获取帮助。')
+                    return null;
+                }
+            }
+        }
+        // 是否多余
+        let count = [];
+        let fileMaxEdge;
+        if (col > row) fileMaxEdge = col;
+        else fileMaxEdge = row;
+        for (let factor = 1; factor <= fileMaxEdge; ++factor) {
+            let times = 0;
+            for (let status = 2; status <= fileMaxEdge; ++status) {
+                const the = data[this.numberToletter(~~status) + '' + (factor)];
+                if (the !== undefined) {
+                    times ++;
+                }
+            }
+            count.push(times);
+        }
+        for (let i = 0; i < edge.length; ++i) {
+            console.log(count[i] +'|'+ edge[i])
+            if (count[i] !== edge[i]) {
+                WellJulyUI.addMsg('发生错误！ 错误原因：第' + (~~i + 1) +'个因素长度不符合正交表内容。\n点击这条消息以获取帮助。')
+                return null;
+            }
+        }
+        
+        // 查错结束
         // 创建结果数组
+        WellJulyUI.addMsg('正在生成测试用例......')
         const res = []
         for (let i = 1; i <= row; ++i) {
             const line = []
             for (let j = 1; j <= col; ++j) {
-                // 开始纠错
-                // 差错结束
                 if (data[this.numberToletter(j) + '' + i] === undefined) {
                     line.push(null)
-                }else {
+                } else {
                     line.push(data[this.numberToletter(j) + '' + i].v)
-                }  
+                }
             }
             res.push(line)
         }
@@ -40,7 +75,7 @@ class ExcelUtil {
     static downloadData(data, fileName) {
         // console.log(data)
         let sheet = XLSX.utils.aoa_to_sheet(data);
-        ExcelUtil.openDownloadDialog(ExcelUtil.sheet2blob(sheet, fileName), fileName)
+        ExcelUtil.openDownloadDialog(ExcelUtil.sheet2blob(sheet), fileName)
     }
 
     // 将一个sheet转成最终的excel文件的blob对象，然后利用URL.createObjectURL下载
