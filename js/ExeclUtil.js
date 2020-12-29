@@ -12,6 +12,7 @@ class ExcelUtil {
     }
 
     static getUploadFileObject() {
+        WellJulyUI.addMsg('上传文件成功，正在生成测试用例......（如果没有长时间没有反应请刷新浏览器）')
         const names = this.uploadFile.SheetNames
         const data = this.uploadFile.Sheets[names[0]]
         // 一行一行解析
@@ -56,7 +57,6 @@ class ExcelUtil {
         
         // 查错结束
         // 创建结果数组
-        WellJulyUI.addMsg('正在生成测试用例......')
         const res = []
         for (let i = 1; i <= row; ++i) {
             const line = []

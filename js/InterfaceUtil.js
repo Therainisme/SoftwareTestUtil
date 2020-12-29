@@ -56,7 +56,7 @@ class InterfaceUtil {
     
     // 点击消息时候出发的事件
     static clickMsgBur() {
-        window.open('./static/帮助文档.html')
+        window.open('./static/help.html')
     }
 
     // 用户点击麦克风

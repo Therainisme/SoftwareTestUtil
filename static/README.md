@@ -6,23 +6,21 @@
 
 > 例如：输入4因素和3水平需要输入3^4，按下回车键搜索
 
-![](./img/readme_search.jpg)
+![](../img/readme_search.jpg)
 
 * 选择与对应正交表相匹配的Excel文件上传
 
 下图是一个**2^4 4^1**的Excel文件。每一行对应一个因素，每一行的第一列是因素名称
 
-![](./img/execl_tamplate.jpg)
+![](../img/execl_tamplate.jpg)
 
 > 操作方式：将鼠标悬浮到搜索结果的正交表上，点击即可
-
-![](img/2020-12-29-08-37-39.png)
 
 * 等待下载
 
 下图是生成的结果
 
-![](./img/res.jpg)
+![](../img/res.jpg)
 
 ## 可能会遇到的问题
 
@@ -36,4 +34,4 @@
 
 ## 快乐找茬
 
-[点击这里](http://course.therainisme.com:520/SoftwareTestUtil)
+[点击此处获取一些测试用例](../input/TestCases.zip)
